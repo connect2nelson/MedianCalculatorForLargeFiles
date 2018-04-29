@@ -3,14 +3,14 @@ package com.fun.abm.LargeFileMedianCalculator;
 
 import com.fun.abm.LargeFileMedianCalculator.reader.BigFileReader;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.math.BigInteger;
 
 public class MedianCalculator {
 
     private BigFileReader bigFileReader;
 
-    MedianCalculator(String filePath) throws FileNotFoundException {
+    MedianCalculator(String filePath) throws IOException {
         bigFileReader = new BigFileReader(filePath);
     }
 

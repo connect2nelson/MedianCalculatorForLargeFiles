@@ -4,6 +4,7 @@ package com.fun.abm.LargeFileMedianCalculator.reader;
 import org.junit.Test;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.fail;
@@ -15,7 +16,7 @@ public class BigFileReaderTest {
 
         try {
             BigFileReader bigFileReader = new BigFileReader("test-data.txt");
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             fail();
         }
 
@@ -28,12 +29,14 @@ public class BigFileReaderTest {
             BigFileReader bigFileReader = new BigFileReader("non-existent.txt");
             fail();
         } catch (FileNotFoundException ignored) {
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
 
     @Test
-    public void shouldBeAbleToReadALineFromTheFile() throws FileNotFoundException {
+    public void shouldBeAbleToReadALineFromTheFile() throws IOException {
 
         BigFileReader bigFileReader = new BigFileReader("test-data.txt");
         String firstLine = bigFileReader.readALine();
@@ -42,7 +45,7 @@ public class BigFileReaderTest {
     }
 
     @Test
-    public void shouldBeAbleToReadMoreThanASingleLineFromTheFile() throws FileNotFoundException {
+    public void shouldBeAbleToReadMoreThanASingleLineFromTheFile() throws IOException {
 
         BigFileReader bigFileReader = new BigFileReader("test-data.txt");
         bigFileReader.readALine();
@@ -52,7 +55,7 @@ public class BigFileReaderTest {
     }
 
     @Test
-    public void shouldStopReadingFromAFileOnceThereAreNoMoreLines() throws FileNotFoundException {
+    public void shouldStopReadingFromAFileOnceThereAreNoMoreLines() throws IOException {
 
         BigFileReader bigFileReader = new BigFileReader("test-data.txt");
         while ( bigFileReader.readALine() != null);
