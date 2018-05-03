@@ -2,9 +2,7 @@ package com.fun.abm.LargeFileMedianCalculator.reader;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URL;
 import java.util.Scanner;
 
 public class BigFileReader {
@@ -20,14 +18,7 @@ public class BigFileReader {
     }
 
     private void initialize() throws IOException {
-        ClassLoader classLoader = getClass().getClassLoader();
-        URL resource = classLoader
-                .getResource(filename);
-
-        if (resource == null)
-            throw new FileNotFoundException();
-
-        File file = new File(resource.getFile());
+        File file = new File(this.filename);
 
         FileInputStream inputStream = new FileInputStream(file);
         scanner = new Scanner(inputStream, "UTF-8");
